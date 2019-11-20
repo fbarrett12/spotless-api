@@ -1,0 +1,2 @@
+class CouriersController < ApplicationController
+end

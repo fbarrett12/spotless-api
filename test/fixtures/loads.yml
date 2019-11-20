@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  washed: 
+  done: 
+  user: one
+  provider: one
+
+two:
+  washed: 
+  done: 
+  user: two
+  provider: two
