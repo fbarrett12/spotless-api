@@ -42,3 +42,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Adds serializers
 gem 'fast_jsonapi'
+
+# Adds HTTP gem
+gem "http"
