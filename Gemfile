@@ -3,6 +3,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.1'
 
+# Adds env 
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.1'
 # Use postgresql as the database for Active Record
@@ -45,3 +48,6 @@ gem 'fast_jsonapi'
 
 # Adds HTTP gem
 gem "http"
+
+# Resets primary key sequence
+gem 'activerecord-reset-pk-sequence', '~> 0.2.0'

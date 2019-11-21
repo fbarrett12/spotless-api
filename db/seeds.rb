@@ -8,25 +8,28 @@
 
 require "json"
 require "http"
+Provider.destroy_all
+Provider.reset_pk_sequence
 
 API_HOST = "https://api.yelp.com"
 SEARCH_PATH = "/v3/businesses/search"
 BUSINESS_PATH = "/v3/businesses/"  # trailing / because we append the business id to the path
-API_KEY = ENV["YELP_API_KEY"]
+API_KEY = ENV["YELP_KEY"]
 
 DEFAULT_BUSINESS_ID = "yelp-new-york-city"
-DEFAULT_TERM = "laundromat"
+DEFAULT_TERM = "laundry"
 DEFAULT_LOCATION = "New York, NY"
 SEARCH_LIMIT = 50
 
 def search(term, location)
-    url = "#{API_HOST}#{SEARCH_PATH}"
+    url = "https://api.yelp.com/v3/businesses/search?location=newyork&categories=laundryservices"
+    # "#{API_HOST}#{SEARCH_PATH}/category?=laundryservices"
     params = {
       term: term,
       location: location,
       limit: SEARCH_LIMIT
     }
-    response = HTTP.auth("Bearer #{API_KEY}").get(url, params: params)
+    response = HTTP.auth("Bearer #{API_KEY}").get(url)
     response.parse
 end
 
