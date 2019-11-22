@@ -49,9 +49,4 @@ laundromats["businesses"].each do |laundromat|
     end
 end
 
-# Restaurant.all.each do |rest| 
-#     3.times do 
-#         Dish.create({restaurant_id: rest.id, name: Faker::Food.dish})
-#     end 
-# end 
 puts "seeded"
