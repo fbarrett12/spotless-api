@@ -32,4 +32,8 @@ class UsersController < ApplicationController
         params.permit(:name, :password)
     end
 
+    def secret
+        ENV["JWT_SECRET_KEY"]
+    end
+
 end
