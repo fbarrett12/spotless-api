@@ -5,12 +5,11 @@ class UsersController < ApplicationController
     end
 
     def create
-        byebug
         @user = User.create(user_params)
         if @user.valid? 
             user = @user
             token = JWT.encode({user_id: user.id, role: user.class.name}, secret, 'HS256')
-            render json: {user: user, token: token}
+            render json: {user: user, token: token, role: user.class.name}
         else
             render json: {errors: user.errors.full_messages}
         end
