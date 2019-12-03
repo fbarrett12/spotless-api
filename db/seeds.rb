@@ -8,8 +8,8 @@
 
 require "json"
 require "http"
-Provider.destroy_all
-Provider.reset_pk_sequence
+# Provider.delete_all
+# Provider.reset_pk_sequence
 
 API_HOST = "https://api.yelp.com"
 SEARCH_PATH = "/v3/businesses/search"
@@ -34,18 +34,21 @@ def search(term, location)
 end
 
 laundromats = search("", "New York City")
+
 laundromats["businesses"].each do |laundromat|
     if Provider.all.find_by(name: laundromat["name"])
     else
-        Provider.create({
+        Provider.create!({
             name: laundromat["name"],
-            # image: rest["image_url"],
+            image: laundromat["image_url"],
             address: laundromat["location"]["display_address"].join(" "),
-            # longitude: rest["coordinates"]["longitude"],
-            # latitude: rest["coordinates"]["latitude"],
-            # category: rest["categories"][0]["title"],
-            # borough: rest["location"]["city"]
+            longitude: laundromat["coordinates"]["longitude"],
+            latitude: laundromat["coordinates"]["latitude"],
+            category: laundromat["categories"][0]["title"],
+            borough: laundromat["location"]["city"],
+            password: "yelpapi123"
         })
+     
     end
 end
 
