@@ -10,7 +10,8 @@ class ApplicationController < ActionController::API
     def tokenForAccount(user)
         { id: user.id,
           token: createToken(user),
-          role: user.class.name
+          role: user.class.name,
+          userInfo: user
         }
     end
 
@@ -40,7 +41,7 @@ class ApplicationController < ActionController::API
     def getClassFromToken
         decoded = decodeToken
 
-        unless decoded && decoded [0] && decoded [0]['role']
+        unless decoded && decoded [0] && decoded[0]['role']
           return nil
         end
 

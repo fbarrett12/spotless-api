@@ -33,14 +33,13 @@ class AuthController < ApplicationController
     end
 
     def persist
-        
         if request.headers['Authorization']
             # encoded_token = request.headers['Authorization'].split(' ')[1]
             # token = JWT.decode(encoded_token, secret)
             user_id = getIdFromToken
             user_class = getClassFromToken.constantize
             @user = user_class.find(user_id)
-            render json: @user
+            render json: tokenForAccount(@user)
         end
     end
 
