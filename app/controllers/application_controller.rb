@@ -11,7 +11,8 @@ class ApplicationController < ActionController::API
         { id: user.id,
           token: createToken(user),
           role: user.class.name,
-          userInfo: user
+          userInfo: user,
+          loadHistory: user.loads 
         }
     end
 

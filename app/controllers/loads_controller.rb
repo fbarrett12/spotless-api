@@ -16,6 +16,6 @@ class LoadsController < ApplicationController
     private
 
     def load_params
-        params.require(:load).permit(:user_id, :provider_id)
+        params.require(:load).permit(:user_id, :provider_id, :customer_name, :provider_name)
     end
 end

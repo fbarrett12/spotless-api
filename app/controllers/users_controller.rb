@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     end
     def show 
         @user = User.find(params[:id])
-        render json: @user
+        render json: UserSerializer.new(@user).serialized_json
     end
 
     def create
@@ -23,6 +23,10 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @user.update(user_params)
         render json: @user
+    end
+
+    def history
+        @user = User.find
     end
 
     def destroy 
